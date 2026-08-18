@@ -8,7 +8,10 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="阿魚の小宇宙">
-<link rel="apple-touch-icon" sizes="512x512" href="./icon-512.png">
+
+
+<link rel="icon" type="image/png" href="./icon-512.PNG">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.PNG">
 <link rel="manifest" href="./manifest.json">
 <title>阿魚の小宇宙 Dashboard</title>
 <style>
@@ -28,20 +31,20 @@ body{
   transition:background .5s ease,color .5s ease
 }
 body.night{
-  --ink:#fff7fb;
-  --muted:#d6c5d3;
-  --pink:#f6a8c8;
-  --mint:#9ddfd7;
-  --mint2:#3a3042;
-  --pink2:#4a3042;
-  --gold:#f7cf8b;
-  --card:#2d2436e8;
-  --border:#6b5872;
-  --soft:#352c40;
+  --ink:#534758;
+  --muted:#8f8394;
+  --pink:#d97fa8;
+  --mint:#68bdb5;
+  --mint2:#e9f7f5;
+  --pink2:#f7eaf2;
+  --gold:#d8ad62;
+  --card:rgba(255,250,253,.95);
+  --border:#ead9e8;
+  --soft:#f5edf5;
   background:
-    radial-gradient(circle at 20% 16%,#ffffff16 0 1.5px,transparent 2.5px) 0 0/52px 52px,
-    radial-gradient(circle at 78% 24%,#f6cde01a 0 1px,transparent 2px) 0 0/70px 70px,
-    linear-gradient(135deg,#241d2d,#31253a 52%,#3d2b3e 100%);
+    radial-gradient(circle at 18% 14%,rgba(255,255,255,.9) 0 1.5px,transparent 2.5px) 0 0/52px 52px,
+    radial-gradient(circle at 82% 22%,rgba(241,213,232,.55) 0 1px,transparent 2px) 0 0/72px 72px,
+    linear-gradient(135deg,#f1edf7 0%,#f8edf4 48%,#eee9f6 100%);
 }
 .wrap{max-width:1400px;margin:auto}
 .top,.card{
@@ -91,6 +94,78 @@ body.night .nightbadge{display:inline}
   .brand{font-size:16px}.bigtemp{font-size:58px}.card{padding:18px}
   .hero-note{font-size:14px}
 }
+
+/* 月光奶油夜間模式：刻意保持淺色，不使用黑／深藍底 */
+body.night .top,
+body.night .card{
+  background:rgba(255,250,253,.94);
+  border-color:#ead7e5;
+  box-shadow:0 12px 35px rgba(117,83,111,.10);
+}
+body.night .bus{
+  background:linear-gradient(135deg,#fffafd,#f5eff8);
+  border-color:#e7d8e7;
+}
+body.night .hero-note{
+  background:linear-gradient(135deg,#eaf8f5,#fbeaf2);
+  border-color:#ead7e5;
+}
+body.night .route{
+  background:linear-gradient(135deg,#68c9bf,#55bdb2);
+  color:white;
+}
+body.night .etas{color:#3ea99f}
+body.night .brand{
+  color:#514657;
+  text-shadow:0 0 14px rgba(217,121,165,.14);
+}
+body.night .status,
+body.night .pill{
+  box-shadow:none;
+}
+
+
+/* 🌙 月光奶油夜間模式 */
+body.night .top,
+body.night .card{
+  background:rgba(255,250,253,.95);
+  border-color:#ead9e8;
+  box-shadow:0 12px 34px rgba(120,88,116,.10);
+}
+body.night .bus{
+  background:linear-gradient(135deg,#fffafd,#f5eff8);
+  border-color:#e7d9e7;
+}
+body.night .hero-note{
+  background:linear-gradient(135deg,#eaf8f5,#fbeaf2);
+  border-color:#ead9e8;
+}
+body.night .route{
+  background:linear-gradient(135deg,#70c8bf,#5dbab2);
+  color:#fff;
+}
+body.night .etas{color:#3fa89f}
+body.night .brand{
+  color:#5a4a5d;
+  text-shadow:0 0 14px rgba(217,127,168,.14);
+}
+body.night .weatherhint,
+body.night .status,
+body.night .statepill{
+  background:rgba(248,240,247,.9);
+}
+body.night .nightbadge{
+  color:#b48a45;
+}
+
+
+.brand{display:flex;align-items:center;gap:10px}
+.brand-logo{
+  width:42px;height:42px;border-radius:12px;object-fit:cover;
+  box-shadow:0 5px 16px rgba(217,127,168,.18)
+}
+@media(max-width:800px){.brand-logo{width:36px;height:36px;border-radius:10px}}
+
 </style>
 </head>
 <body>
@@ -100,8 +175,7 @@ body.night .nightbadge{display:inline}
       <span id="clock" class="clock">--:--:--</span>
       <span id="date" class="date"></span>
     </div>
-    <div class="brand">
-      阿魚の小宇宙 🐟🌙🦊 <span class="nightbadge">夜間模式</span>
+    <div class="brand"><img class="brand-logo" src="./icon-512.PNG" alt="阿魚の小宇宙 Logo">阿魚の小宇宙 🐟🌙🦊 <span class="nightbadge">夜間模式</span>
       <button class="btn" onclick="refreshAll()">↻ 更新</button>
     </div>
   </div>
