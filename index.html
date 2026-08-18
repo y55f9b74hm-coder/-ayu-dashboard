@@ -4,306 +4,52 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#fff7fb">
-<title>阿魚の小宇宙 Dashboard V5</title>
+<title>阿魚の小宇宙 Dashboard</title>
 <style>
-:root{
-  --ink:#34434a;--muted:#8b999e;--pink:#f080a3;--mint:#168f96;
-  --mint2:#eafbf8;--pink2:#fff0f5;--gold:#ffb52e;--card:#fffffff2;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;padding:18px;min-height:100vh;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 15% 10%,#fff1f6 0 2px,transparent 3px) 0 0/30px 30px,
-    linear-gradient(135deg,#fffaf6,#fff7fb 55%,#effffb);
-}
-.wrap{max-width:1400px;margin:auto}
-.top,.card{
-  background:var(--card);border:2px solid #ffe1ea;border-radius:24px;
-  box-shadow:0 12px 35px #61485417
-}
-.top{padding:18px 24px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.clock{font-size:48px;font-weight:900;letter-spacing:3px;color:var(--mint)}
-.date{font-size:18px;font-weight:900;color:var(--pink);margin-left:14px}
-.brand{font-size:20px;font-weight:900;white-space:nowrap}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.card{padding:22px}
-.title{font-size:20px;font-weight:900;margin-bottom:18px}
-.weatherrow{display:flex;align-items:center;justify-content:space-between;gap:15px}
-.bigtemp{font-size:66px;font-weight:900;color:var(--gold)}
-.weathericon{font-size:64px}
-.pills{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.pill{padding:13px;border-radius:15px;font-weight:800}
-.mint{background:var(--mint2);color:#258d88}.pink{background:var(--pink2);color:#dc6f94}
-.bus{display:grid;grid-template-columns:90px 1fr;gap:16px;align-items:center;padding:16px;margin:10px 0;border:1px solid #e7eeee;border-radius:18px;background:#fbfdfd}
-.route{font-size:30px;font-weight:900;color:#fff;background:var(--mint);padding:10px;border-radius:14px;text-align:center}
-.etas{font-size:22px;font-weight:900;color:#20a986;line-height:1.45}
-.sub{font-size:13px;color:var(--muted);margin-top:6px}
-.bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.count{text-align:center;font-size:52px;font-weight:900;color:var(--mint)}
-.quote{text-align:center;font-weight:900;color:var(--pink);margin-top:12px}
-.btn{border:0;background:#55cfc2;color:white;padding:11px 16px;border-radius:14px;font-weight:900;cursor:pointer}
-.ok{color:#20a986}.warn{color:#e89a23}.err{color:#d8657e}
-.status{margin-top:10px;padding:10px 12px;border-radius:12px;background:#fafafa;font-size:12px;color:var(--muted);word-break:break-word}
-@media(max-width:800px){
-  body{padding:10px}.grid,.bottom{grid-template-columns:1fr}.clock{font-size:34px}
-  .date{display:block;margin:3px 0}.top{align-items:flex-start;flex-direction:column}
-  .brand{font-size:16px}.bigtemp{font-size:58px}.card{padding:18px}
-}
+:root{--ink:#34434a;--muted:#8b999e;--pink:#f080a3;--mint:#168f96;--mint2:#eafbf8;--pink2:#fff0f5;--gold:#ffb52e;--card:#fffffff2}
+*{box-sizing:border-box}body{margin:0;padding:18px;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#fff1f6 0 2px,transparent 3px) 0 0/30px 30px,linear-gradient(135deg,#fffaf6,#fff7fb 55%,#effffb)}
+.wrap{max-width:1400px;margin:auto}.top,.card{background:var(--card);border:2px solid #ffe1ea;border-radius:24px;box-shadow:0 12px 35px #61485417}.top{padding:18px 24px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:12px}.clock{font-size:48px;font-weight:900;letter-spacing:3px;color:var(--mint)}.date{font-size:18px;font-weight:900;color:var(--pink);margin-left:14px}.brand{font-size:20px;font-weight:900;white-space:nowrap}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{padding:22px}.title{font-size:20px;font-weight:900;margin-bottom:18px}.weatherrow{display:flex;align-items:center;justify-content:space-between;gap:15px}.bigtemp{font-size:66px;font-weight:900;color:var(--gold)}.weathericon{font-size:64px}.pills{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.pill{padding:13px;border-radius:15px;font-weight:800}.mint{background:var(--mint2);color:#258d88}.pink{background:var(--pink2);color:#dc6f94}.bus{display:grid;grid-template-columns:90px 1fr;gap:16px;align-items:center;padding:16px;margin:10px 0;border:1px solid #e7eeee;border-radius:18px;background:#fbfdfd}.route{font-size:30px;font-weight:900;color:#fff;background:var(--mint);padding:10px;border-radius:14px;text-align:center}.etas{font-size:22px;font-weight:900;color:#20a986;line-height:1.45}.sub{font-size:13px;color:var(--muted);margin-top:6px}.bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.count{text-align:center;font-size:52px;font-weight:900;color:var(--mint)}.quote{text-align:center;font-weight:900;color:var(--pink);margin-top:12px}.btn{border:0;background:#55cfc2;color:white;padding:11px 16px;border-radius:14px;font-weight:900;cursor:pointer}.status{margin-top:10px;padding:10px 12px;border-radius:12px;background:#fafafa;font-size:12px;color:var(--muted)}.ok{color:#20a986}.err{color:#d8657e}
+@media(max-width:800px){body{padding:10px}.grid,.bottom{grid-template-columns:1fr}.clock{font-size:34px}.date{display:block;margin:3px 0}.top{align-items:flex-start;flex-direction:column}.brand{font-size:16px}.bigtemp{font-size:58px}.card{padding:18px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top">
-    <div>
-      <span id="clock" class="clock">--:--:--</span>
-      <span id="date" class="date"></span>
-    </div>
-    <div class="brand">阿魚の小宇宙 🐟🌙🦊
-      <button class="btn" onclick="refreshAll()">↻ 更新</button>
-    </div>
-  </div>
-
-  <div class="grid">
-    <section class="card">
-      <div class="title">🌤️ 旺角附近即時天氣</div>
-      <div class="weatherrow">
-        <div>
-          <div id="temp" class="bigtemp">--°</div>
-          <b id="weatherPlace">京士柏觀測站 · 旺角附近</b>
-          <div id="weatherTime" class="sub">正在連接香港天文台…</div>
-        </div>
-        <div class="weathericon">🌦️</div>
-      </div>
-      <div class="pills">
-        <div class="pill mint">💧 濕度　<span id="humidity">--%</span></div>
-        <div class="pill pink">☔ 油尖旺雨量　<span id="rainfall">-- mm</span></div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="title">🚌 旺角東站 → 屯門</div>
-
-      <div class="bus">
-        <div class="route">58X</div>
-        <div>
-          <div id="58X" class="etas">正在搵班次…</div>
-          <div id="58Xs" class="sub">往良景邨 · 九巴即時 ETA</div>
-        </div>
-      </div>
-
-      <div class="bus">
-        <div class="route">59X</div>
-        <div>
-          <div id="59X" class="etas">正在搵班次…</div>
-          <div id="59Xs" class="sub">往屯門碼頭 · 九巴即時 ETA</div>
-        </div>
-      </div>
-
-      <div id="etaUpdated" class="sub">ETA 每 60 秒自動更新</div>
-      <div id="debug" class="status">系統啟動中…</div>
-    </section>
-  </div>
-
-  <div class="bottom">
-    <section class="card">
-      <div class="title">📅 阿魚返工時間</div>
-      <p><b>09:30　返工 💻</b></p>
-      <p><b>13:00　食飯 🍜</b></p>
-      <p><b>18:30　收工 🎉</b></p>
-      <div class="sub">全部固定以香港時間計算 🇭🇰</div>
-    </section>
-
-    <section class="card">
-      <div class="title" style="text-align:center">🏃‍♀️ 今日狀態</div>
-      <div id="count" class="count">--:--:--</div>
-      <div id="msg" class="quote">狐狸姐姐監督中 🦊</div>
-    </section>
-  </div>
+<div class="top"><div><span id="clock" class="clock">--:--:--</span><span id="date" class="date"></span></div><div class="brand">阿魚の小宇宙 🐟🌙🦊 <button class="btn" onclick="refreshAll()">↻ 更新</button></div></div>
+<div class="grid">
+<section class="card">
+<div class="title">🌤️ 旺角附近即時天氣</div>
+<div class="weatherrow"><div><div id="temp" class="bigtemp">--°</div><b>京士柏觀測站 · 旺角附近</b><div id="weatherTime" class="sub">正在連接香港天文台…</div></div><div class="weathericon">🌦️</div></div>
+<div class="pills"><div class="pill mint">💧 濕度　<span id="humidity">--%</span></div><div class="pill pink">☔ 油尖旺雨量　<span id="rainfall">-- mm</span></div></div>
+</section>
+<section class="card">
+<div class="title">🚌 旺角東站 → 屯門</div>
+<div class="bus"><div class="route">58X</div><div><div id="58X" class="etas">正在搵班次…</div><div id="58Xs" class="sub">往良景邨 · 九巴即時 ETA</div></div></div>
+<div class="bus"><div class="route">59X</div><div><div id="59X" class="etas">正在搵班次…</div><div id="59Xs" class="sub">往屯門碼頭 · 九巴即時 ETA</div></div></div>
+<div id="etaUpdated" class="sub">ETA 每 60 秒自動更新</div>
+<div id="debug" class="status">🚌 準備連接阿魚巴士 API…</div>
+</section>
 </div>
-
+<div class="bottom">
+<section class="card"><div class="title">📅 阿魚返工時間</div><p><b>09:30　返工 💻</b></p><p><b>13:00　食飯 🍜</b></p><p><b>18:30　收工 🎉</b></p><div class="sub">全部固定以香港時間計算 🇭🇰</div></section>
+<section class="card"><div class="title" style="text-align:center">🏃‍♀️ 今日狀態</div><div id="count" class="count">--:--:--</div><div id="msg" class="quote">狐狸姐姐監督中 🦊</div></section>
+</div>
+</div>
 <script>
-const KMB='https://data.etabus.gov.hk/v1/transport/kmb';
+const WORKER='https://ayu-bus-api.hb847sdnf5.workers.dev';
 const HKO='https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc';
-
-const fmtHK=new Intl.DateTimeFormat('en-CA',{
-  timeZone:'Asia/Hong_Kong',year:'numeric',month:'2-digit',day:'2-digit',
-  hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'
-});
-function hkParts(){
-  const o={};
-  fmtHK.formatToParts(new Date()).forEach(x=>{if(x.type!=='literal')o[x.type]=x.value});
-  return o;
-}
-function tick(){
-  const p=hkParts();
-  const wd=new Intl.DateTimeFormat('zh-HK',{timeZone:'Asia/Hong_Kong',weekday:'long'}).format(new Date());
-  document.getElementById('clock').textContent=`${p.hour}:${p.minute}:${p.second}`;
-  document.getElementById('date').textContent=`${p.year}年${+p.month}月${+p.day}日 ${wd} 🇭🇰`;
-
-  const nowSec=+p.hour*3600 + +p.minute*60 + +p.second;
-  const start=9*3600+30*60, end=18*3600+30*60;
-  const c=document.getElementById('count'), m=document.getElementById('msg');
-
-  if(nowSec < start){
-    let d=start-nowSec;
-    c.textContent=formatDuration(d);
-    m.textContent='距離 09:30 返工 💻';
-  }else if(nowSec < end){
-    let d=end-nowSec;
-    c.textContent=formatDuration(d);
-    m.textContent='距離 18:30 收工 🐟✨';
-  }else{
-    c.textContent='收工啦！';
-    m.textContent='走！！！唔好回頭🤣❤️';
-  }
-}
-function formatDuration(s){
-  const h=Math.floor(s/3600),m=Math.floor(s%3600/60),ss=s%60;
-  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
-}
-async function getJSON(url){
-  const r=await fetch(url,{cache:'no-store'});
-  if(!r.ok) throw new Error(`HTTP ${r.status}`);
-  return await r.json();
-}
-
-async function updateWeather(){
-  try{
-    const j=await getJSON(HKO);
-    const temps=(j.temperature&&j.temperature.data)||[];
-    const kp=temps.find(x=>(x.place||'').includes('京士柏')) || temps[0];
-    if(kp) document.getElementById('temp').textContent=`${Math.round(Number(kp.value))}°`;
-
-    const h=j.humidity&&j.humidity.data&&j.humidity.data[0];
-    if(h) document.getElementById('humidity').textContent=`${h.value}%`;
-
-    const rain=(j.rainfall&&j.rainfall.data)||[];
-    const ytm=rain.find(x=>(x.place||'').includes('油尖旺'));
-    if(ytm) document.getElementById('rainfall').textContent=`${ytm.max ?? ytm.value ?? 0} mm`;
-    else document.getElementById('rainfall').textContent='暫無';
-
-    document.getElementById('weatherTime').textContent=
-      `香港天文台 · 更新 ${j.updateTime ? new Date(j.updateTime).toLocaleTimeString('zh-HK',{timeZone:'Asia/Hong_Kong',hour:'2-digit',minute:'2-digit',hour12:false}) : '剛剛'}`;
-  }catch(e){
-    document.getElementById('weatherTime').textContent='⚠️ 暫時未能讀取天文台資料';
-    console.error('HKO',e);
-  }
-}
-
-let busMeta=null;
-async function loadBusMeta(){
-  if(busMeta) return busMeta;
-
-  // 一次過下載「所有站」和「所有路線站序」，避免逐站查 API。
-  const [stopsJ, routeStopsJ]=await Promise.all([
-    getJSON(`${KMB}/stop`),
-    getJSON(`${KMB}/route-stop`)
-  ]);
-
-  const stopMap=new Map((stopsJ.data||[]).map(s=>[s.stop,s]));
-  const wanted=(routeStopsJ.data||[]).filter(x=>['58X','59X'].includes(String(x.route).toUpperCase()));
-
-  const result={};
-
-  for(const route of ['58X','59X']){
-    const candidates=wanted.filter(x=>String(x.route).toUpperCase()===route);
-
-    // 旺角東站應為往屯門方向的起點；直接用站名核對，避免方向值寫死。
-    const matching=candidates.filter(x=>{
-      const s=stopMap.get(x.stop)||{};
-      const name=((s.name_tc||'')+' '+(s.name_en||'')).toUpperCase();
-      return name.includes('旺角東') || name.includes('MONG KOK EAST');
-    }).sort((a,b)=>Number(a.seq)-Number(b.seq));
-
-    if(!matching.length) throw new Error(`${route} 找不到旺角東站`);
-
-    // 若同一路線因不同 service_type 出現多筆，優先 service_type=1。
-    result[route]=matching.find(x=>String(x.service_type)==='1') || matching[0];
-  }
-
-  busMeta=result;
-  return result;
-}
-
-function minsUntil(iso){
-  return Math.max(0,Math.floor((new Date(iso)-new Date())/60000));
-}
-function labelMin(m){ return m<=0 ? '即到' : `${m}分鐘`; }
-function urgency(m){
-  if(m<=5) return '🔴 快啲走！';
-  if(m<=10) return '🟠 準備走！';
-  return '🟢 慢慢行 🦊';
-}
-
-async function routeETA(route){
-  const el=document.getElementById(route);
-  const sub=document.getElementById(route+'s');
-
-  try{
-    const meta=await loadBusMeta();
-
-    // 正確官方 endpoint 是 /eta/{stop_id}/{route}/{service_type}
-    const c=meta[route];
-    const j=await getJSON(`${KMB}/eta/${c.stop}/${route}/${c.service_type}`);
-
-    let rows=(j.data||[]).filter(x=>x.eta);
-
-    // 只保留同一方向；官方回傳最多每方向 3 個 ETA。
-    if(c.dir) rows=rows.filter(x=>!x.dir || x.dir===c.dir);
-
-    rows.sort((a,b)=>new Date(a.eta)-new Date(b.eta));
-    rows=rows.slice(0,3);
-
-    if(!rows.length){
-      el.textContent='暫時未有班次';
-      sub.textContent=(route==='58X'?'往良景邨':'往屯門碼頭')+' · 暫無 ETA';
-      return;
-    }
-
-    const mins=rows.map(x=>minsUntil(x.eta));
-    el.textContent=mins.map(labelMin).join(' ｜ ');
-    sub.textContent=(route==='58X'?'往良景邨':'往屯門碼頭')+' · '+urgency(mins[0]);
-
-  }catch(e){
-    el.textContent='未能讀取 ETA';
-    sub.textContent='⚠️ 九巴資料連線失敗';
-    throw e;
-  }
-}
-
-async function updateETA(){
-  const debug=document.getElementById('debug');
-  debug.textContent='🚌 正在連接九巴官方資料…';
-  try{
-    await Promise.all([routeETA('58X'),routeETA('59X')]);
-    const p=hkParts();
-    document.getElementById('etaUpdated').textContent=`ETA 每60秒自動更新 · ${p.hour}:${p.minute} 香港時間`;
-    debug.textContent='✅ 九巴 ETA 已連接';
-    debug.className='status ok';
-  }catch(e){
-    debug.textContent='❌ ETA 連線失敗：'+e.message;
-    debug.className='status err';
-    console.error('KMB',e);
-  }
-}
-
-async function refreshAll(){
-  const b=document.querySelector('.btn');
-  b.textContent='↻ 更新中';
-  busMeta=null;
-  await Promise.allSettled([updateWeather(),updateETA()]);
-  b.textContent='✓ 已更新';
-  setTimeout(()=>b.textContent='↻ 更新',1000);
-}
-
-tick();
-setInterval(tick,1000);
-refreshAll();
-setInterval(updateETA,60000);
-setInterval(updateWeather,300000);
+const fmtHK=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Hong_Kong',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
+function hkParts(){const o={};fmtHK.formatToParts(new Date()).forEach(x=>{if(x.type!=='literal')o[x.type]=x.value});return o}
+function dur(s){const h=Math.floor(s/3600),m=Math.floor(s%3600/60),ss=s%60;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`}
+function tick(){const p=hkParts();const wd=new Intl.DateTimeFormat('zh-HK',{timeZone:'Asia/Hong_Kong',weekday:'long'}).format(new Date());clock.textContent=`${p.hour}:${p.minute}:${p.second}`;date.textContent=`${p.year}年${+p.month}月${+p.day}日 ${wd} 🇭🇰`;const now=+p.hour*3600 + +p.minute*60 + +p.second,start=34200,end=66600;if(now<start){count.textContent=dur(start-now);msg.textContent='距離 09:30 返工 💻'}else if(now<end){count.textContent=dur(end-now);msg.textContent='距離 18:30 收工 🐟✨'}else{count.textContent='收工啦！';msg.textContent='走！！！唔好回頭🤣❤️'}}
+async function getJSON(u){const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw Error(`HTTP ${r.status}`);return r.json()}
+async function updateWeather(){try{const j=await getJSON(HKO);const t=(j.temperature?.data||[]).find(x=>(x.place||'').includes('京士柏'))||(j.temperature?.data||[])[0];if(t)temp.textContent=`${Math.round(Number(t.value))}°`;const h=j.humidity?.data?.[0];if(h)humidity.textContent=`${h.value}%`;const r=(j.rainfall?.data||[]).find(x=>(x.place||'').includes('油尖旺'));rainfall.textContent=r?`${r.max??r.value??0} mm`:'暫無';weatherTime.textContent=`香港天文台 · 更新 ${j.updateTime?new Date(j.updateTime).toLocaleTimeString('zh-HK',{timeZone:'Asia/Hong_Kong',hour:'2-digit',minute:'2-digit',hour12:false}):'剛剛'}`}catch(e){weatherTime.textContent='⚠️ 暫時未能讀取天文台資料'}}
+function mins(iso){return Math.max(0,Math.floor((new Date(iso)-new Date())/60000))}
+function lab(m){return m<=0?'即到':`${m}分鐘`}
+function urg(m){return m<=5?'🔴 快啲走！':m<=10?'🟠 準備走！':'🟢 慢慢行 🦊'}
+async function updateRoute(route){const j=await getJSON(`${WORKER}/?route=${route}`);if(j.error)throw Error(j.error);const arr=(j.eta||[]).map(x=>mins(x.eta));const el=document.getElementById(route),sub=document.getElementById(route+'s');if(!arr.length){el.textContent='暫時未有班次';sub.textContent=(route==='58X'?'往良景邨':'往屯門碼頭')+' · 暫無 ETA';return}el.textContent=arr.map(lab).join(' ｜ ');sub.textContent=(route==='58X'?'往良景邨':'往屯門碼頭')+' · '+urg(arr[0])}
+async function updateETA(){debug.textContent='🚌 正在連接阿魚巴士 API…';try{await Promise.all([updateRoute('58X'),updateRoute('59X')]);const p=hkParts();etaUpdated.textContent=`ETA 每60秒自動更新 · ${p.hour}:${p.minute} 香港時間`;debug.textContent='✅ 58X / 59X ETA 已連接';debug.className='status ok'}catch(e){debug.textContent='❌ ETA：'+e.message;debug.className='status err'}}
+async function refreshAll(){const b=document.querySelector('.btn');b.textContent='↻ 更新中';await Promise.allSettled([updateWeather(),updateETA()]);b.textContent='✓ 已更新';setTimeout(()=>b.textContent='↻ 更新',900)}
+tick();setInterval(tick,1000);refreshAll();setInterval(updateETA,60000);setInterval(updateWeather,300000);
 </script>
 </body>
 </html>
