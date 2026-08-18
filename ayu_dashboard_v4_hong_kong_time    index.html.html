@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>阿魚の小宇宙 V4</title>
+<style>
+:root{--ink:#34434a;--muted:#8b999e;--pink:#f080a3;--mint:#168f96;--gold:#ffb52e}
+*{box-sizing:border-box}body{margin:0;padding:18px;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:var(--ink);background:linear-gradient(135deg,#fffaf6,#fff7fb 55%,#effffb)}
+.wrap{max-width:1400px;margin:auto}.top,.card{background:#fffffff2;border:2px solid #ffe1ea;border-radius:24px;box-shadow:0 12px 35px #61485417}
+.top{padding:18px 24px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}.clock{font-size:48px;font-weight:900;letter-spacing:3px;color:var(--mint)}.date{font-size:18px;font-weight:900;color:var(--pink);margin-left:14px}.brand{font-size:20px;font-weight:900}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{padding:22px}.title{font-size:20px;font-weight:900;margin-bottom:18px}.temp{font-size:70px;font-weight:900;color:var(--gold)}
+.bus{display:grid;grid-template-columns:90px 1fr;gap:16px;align-items:center;padding:16px;margin:10px 0;border:1px solid #e7eeee;border-radius:18px;background:#fbfdfd}.route{font-size:30px;font-weight:900;color:#fff;background:var(--mint);padding:10px;border-radius:14px;text-align:center}.etas{font-size:23px;font-weight:900;color:#20a986}.sub{font-size:13px;color:var(--muted);margin-top:6px}.bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.count{text-align:center;font-size:52px;font-weight:900;color:var(--mint)}.quote{text-align:center;font-weight:900;color:var(--pink);margin-top:12px}.btn{border:0;background:#55cfc2;color:white;padding:11px 16px;border-radius:14px;font-weight:900;cursor:pointer}
+@media(max-width:800px){.grid,.bottom{grid-template-columns:1fr}.clock{font-size:34px}.date{display:block;margin:3px 0}.top{align-items:flex-start}}
+</style>
+</head>
+<body><div class="wrap">
+<div class="top"><div><span id="clock" class="clock">--:--:--</span><span id="date" class="date"></span></div><div class="brand">阿魚の小宇宙 🐟🌙🦊 <button class="btn" onclick="updateETA()">↻ 更新</button></div></div>
+
+<div class="grid">
+<section class="card"><div class="title">🌤️ 旺角天氣</div><div class="temp">🌦️</div><b>旺角 · 香港</b><div class="sub">天氣模組下一版接即時觀測資料</div></section>
+<section class="card"><div class="title">🚌 旺角東站 → 屯門</div>
+<div class="bus"><div class="route">58X</div><div><div id="58X" class="etas">正在搵班次…</div><div id="58Xs" class="sub">往良景邨 · 九巴即時 ETA</div></div></div>
+<div class="bus"><div class="route">59X</div><div><div id="59X" class="etas">正在搵班次…</div><div id="59Xs" class="sub">往屯門碼頭 · 九巴即時 ETA</div></div></div>
+<div id="updated" class="sub">每 60 秒自動更新</div></section>
+</div>
+
+<div class="bottom">
+<section class="card"><div class="title">📅 阿魚返工時間</div><p><b>09:30　返工 💻</b></p><p><b>13:00　食飯 🍜</b></p><p><b>18:30　收工 🎉</b></p><div class="sub">全部固定以香港時間計算</div></section>
+<section class="card"><div class="title" style="text-align:center">🏃‍♀️ 距離 18:30 收工</div><div id="count" class="count">--:--:--</div><div id="msg" class="quote">狐狸姐姐監督中 🦊</div></section>
+</div></div>
+
+<script>
+const API='https://data.etabus.gov.hk/v1/transport/kmb';
+const fmtHK=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Hong_Kong',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
+function hkParts(){let o={};fmtHK.formatToParts(new Date()).forEach(x=>{if(x.type!=='literal')o[x.type]=x.value});return o}
+function tick(){
+ let p=hkParts(), wd=new Intl.DateTimeFormat('zh-HK',{timeZone:'Asia/Hong_Kong',weekday:'long'}).format(new Date());
+ document.getElementById('clock').textContent=`${p.hour}:${p.minute}:${p.second}`;
+ document.getElementById('date').textContent=`${p.year}年${+p.month}月${+p.day}日 ${wd} 🇭🇰`;
+ let now=+p.hour*3600 + +p.minute*60 + +p.second, end=18*3600+30*60, d=end-now;
+ let c=document.getElementById('count'),m=document.getElementById('msg');
+ if(d<=0){c.textContent='收工啦！';m.textContent='走！！！唔好回頭🤣❤️'}
+ else{let h=Math.floor(d/3600),mi=Math.floor(d%3600/60),s=d%60;c.textContent=`${String(h).padStart(2,'0')}:${String(mi).padStart(2,'0')}:${String(s).padStart(2,'0')}`;m.textContent='阿魚今日都要準時收工 🐟✨'}
+}
+async function j(url){let r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error(r.status);return r.json()}
+let cfg={};
+async function origin(route){
+ if(cfg[route])return cfg[route];
+ for(let dir of ['outbound','inbound']){
+  let x=await j(`${API}/route-stop/${route}/${dir}/1`);
+  for(let z of (x.data||[]).sort((a,b)=>+a.seq-+b.seq).slice(0,5)){
+   let s=(await j(`${API}/stop/${z.stop}`)).data||{}, name=(s.name_tc||'')+' '+(s.name_en||'');
+   if(name.includes('旺角東')||name.toUpperCase().includes('MONG KOK EAST'))return cfg[route]={stop:z.stop,dir,st:z.service_type||1};
+  }
+ }
+ throw Error('stop not found');
+}
+function minHK(iso){return Math.max(0,Math.round((new Date(iso)-new Date())/60000))}
+async function routeETA(route){
+ let el=document.getElementById(route), sub=document.getElementById(route+'s');
+ try{
+  let c=await origin(route),x=await j(`${API}/stop-eta/${c.stop}/${route}/${c.st}`);
+  let a=(x.data||[]).filter(v=>v.eta&&(!v.dir||v.dir===c.dir)).sort((a,b)=>new Date(a.eta)-new Date(b.eta)).slice(0,3);
+  if(!a.length){el.textContent='暫時未有班次';return}
+  let ms=a.map(v=>minHK(v.eta));el.textContent=ms.map(v=>v<=0?'即到':`${v}分鐘`).join(' ｜ ');
+  let f=ms[0];sub.textContent=(route==='58X'?'往良景邨':'往屯門碼頭')+' · '+(f<=5?'🔴 快啲走！':f<=10?'🟠 準備走！':'🟢 慢慢行 🦊');
+ }catch(e){el.textContent='未能讀取 ETA';sub.textContent='瀏覽器如封鎖即時資料，可按更新重試';console.error(e)}
+}
+async function updateETA(){await Promise.all([routeETA('58X'),routeETA('59X')]);let p=hkParts();document.getElementById('updated').textContent=`每60秒自動更新 · ${p.hour}:${p.minute} 香港時間`}
+tick();setInterval(tick,1000);updateETA();setInterval(updateETA,60000);
+</script></body></html>
