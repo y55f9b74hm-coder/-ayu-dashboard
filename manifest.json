@@ -1,0 +1,11 @@
+{
+  "name": "阿魚の小宇宙 Dashboard",
+  "short_name": "阿魚の小宇宙",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone"],
+  "background_color": "#fff7fb",
+  "theme_color": "#fff7fb"
+}
