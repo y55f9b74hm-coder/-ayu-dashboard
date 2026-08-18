@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="阿魚の小宇宙">
-<link rel="apple-touch-icon" sizes="512x512" href="./icon-512.PNG">
+<link rel="apple-touch-icon" sizes="512x512" href="./icon-512.png">
 <link rel="manifest" href="./manifest.json">
 <title>阿魚の小宇宙 Dashboard</title>
 <style>
@@ -28,12 +28,20 @@ body{
   transition:background .5s ease,color .5s ease
 }
 body.night{
-  --ink:#eef5ff;--muted:#afbdd0;--pink:#ff9fcb;--mint:#6ee7dd;
-  --mint2:#18333c;--pink2:#35233e;--gold:#ffd36b;--card:#18233be8;
-  --border:#34496a;--soft:#172136;
+  --ink:#fff7fb;
+  --muted:#d6c5d3;
+  --pink:#f6a8c8;
+  --mint:#9ddfd7;
+  --mint2:#3a3042;
+  --pink2:#4a3042;
+  --gold:#f7cf8b;
+  --card:#2d2436e8;
+  --border:#6b5872;
+  --soft:#352c40;
   background:
-    radial-gradient(circle at 15% 10%,#ffffff20 0 2px,transparent 3px) 0 0/34px 34px,
-    linear-gradient(135deg,#0f1830,#182646 55%,#122b35)
+    radial-gradient(circle at 20% 16%,#ffffff16 0 1.5px,transparent 2.5px) 0 0/52px 52px,
+    radial-gradient(circle at 78% 24%,#f6cde01a 0 1px,transparent 2px) 0 0/70px 70px,
+    linear-gradient(135deg,#241d2d,#31253a 52%,#3d2b3e 100%);
 }
 .wrap{max-width:1400px;margin:auto}
 .top,.card{
@@ -45,12 +53,14 @@ body.night{
 .clock{font-size:48px;font-weight:900;letter-spacing:3px;color:var(--mint)}
 .date{font-size:18px;font-weight:900;color:var(--pink);margin-left:14px}
 .brand{font-size:20px;font-weight:900;white-space:nowrap}
+body.night .brand{color:#fff7fb;text-shadow:0 0 16px #f6a8c833}
 .hero-note{
   margin:0 0 14px;padding:14px 18px;border-radius:18px;
   background:linear-gradient(135deg,var(--mint2),var(--pink2));
   border:1px solid var(--border);font-weight:850
 }
 .hero-note .fox{color:var(--pink)}
+body.night .hero-note{background:linear-gradient(135deg,#3b3043,#4a3242);border-color:#6c5873}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{padding:22px}
 .title{font-size:20px;font-weight:900;margin-bottom:18px}
 .weatherrow{display:flex;align-items:center;justify-content:space-between;gap:15px}
@@ -60,10 +70,10 @@ body.night{
 body.night .mint{color:#89fff4}body.night .pink{color:#ffadd0}
 .weatherhint{margin-top:12px;padding:12px 14px;border-radius:15px;background:var(--soft);font-weight:800}
 .bus{display:grid;grid-template-columns:90px 1fr;gap:16px;align-items:center;padding:16px;margin:10px 0;border:1px solid #e7eeee;border-radius:18px;background:#fbfdfd}
-body.night .bus{background:#16243a;border-color:#30455f}
+body.night .bus{background:#34293ceb;border-color:#66566d}
 .route{font-size:30px;font-weight:900;color:#fff;background:var(--mint);padding:10px;border-radius:14px;text-align:center}
 .etas{font-size:22px;font-weight:900;color:#20a986;line-height:1.45}
-body.night .etas{color:#7af2d7}
+body.night .etas{color:#a6e4dc}
 .sub{font-size:13px;color:var(--muted);margin-top:6px}
 .bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .count{text-align:center;font-size:52px;font-weight:900;color:var(--mint)}
